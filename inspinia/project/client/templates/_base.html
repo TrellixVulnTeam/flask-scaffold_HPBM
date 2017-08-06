@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+	<title>{% block title %}{% endblock %}</title>
+	<link href="{{url_for('static', filename='css/bootstrap.min.css')}}" rel='stylesheet'>
+	<link href="{{url_for('static', filename='font-awesome/css/font-awesome.css')}}" rel='stylesheet'>
+	
+	<link href="{{url_for('static', filename='css/animate.css')}}" rel='stylesheet'>
+	<link href="{{url_for('static', filename='css/style.css')}}" rel='stylesheet'>
+</head>
+
+  <body>
+  
+<div id="wrapper">
+{% if current_user.is_authenticated %}
+    {% include 'header.html' %}
+{% endif %}
+	
+	{% if current_user.is_authenticated %}
+	<div id="page-wrapper" class="gray-bg">
+	{% else %}
+	<div id="page-wrapper" class="gray-bg" style="margin: 0 0 0 0px;">
+	{% endif %}
+        <div class="row border-bottom">
+            <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header">
+                    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+                    <form role="search" class="navbar-form-custom" method="post" action="#">
+                        <div class="form-group">
+                            <input type="text" placeholder="Search for something..." class="form-control" name="top-search" id="top-search">
+                        </div>
+                    </form>
+                </div>
+                <ul class="nav navbar-top-links navbar-right">
+					{% if current_user.is_authenticated %}
+                    <li>
+                        <a href="{{ url_for('user.logout') }}">
+                            <i class="fa fa-sign-out"></i> Log out
+                        </a>
+                    </li>
+					{% else %}
+					<li>
+                        <a href="{{ url_for('user.logout') }}">
+                            <i class="fa fa-user"></i> Register/Login
+                        </a>
+                    </li>
+					{% endif %}
+                </ul>
+
+            </nav>
+        </div>
+        <div class="wrapper wrapper-content animated fadeInRight">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="text-center m-t-lg">
+						{% with messages = get_flashed_messages(with_categories=true) %}
+						{% if messages %}
+						<br>
+						<div class="row">
+						  <div class="col-md-12">
+							{% for category, message in messages %}
+							<div class="alert alert-{{ category }}">
+							  <a class="close" title="Close" href="#" data-dismiss="alert">&times;</a>
+							 {{message}}
+							</div>
+							{% endfor %}
+						  </div>
+						</div>
+						{% endif %}
+						{% endwith %}
+						
+                        {% block content %}
+						{% endblock %}
+						
+						{% if error %}
+						  <p class="error"><strong>Error:</strong> {{ error }}</p>
+						{% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="pull-right">
+                10GB of <strong>250GB</strong> Free.
+            </div>
+            <div>
+                <strong>Copyright</strong> Example Company &copy; 2014-2017
+            </div>
+        </div>
+
+    </div>
+</div>
+
+    <div id="page-wrapper" class="gray-bg">
+        <div class="row border-bottom">
+            <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header">
+                    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+                    <form role="search" class="navbar-form-custom" method="post" action="#">
+                        <div class="form-group">
+                            <input type="text" placeholder="Search for something..." class="form-control" name="top-search" id="top-search">
+                        </div>
+                    </form>
+                </div>
+                <ul class="nav navbar-top-links navbar-right">
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-sign-out"></i> Log out
+                        </a>
+                    </li>
+                </ul>
+
+            </nav>
+		</div>
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-10">
+					{% block navhead %}
+					{% endblock %}
+                </div>
+				
+                <div class="col-lg-2">
+                </div>
+            </div>
+		<div id='content'>
+			
+		</div>
+	</div>
+
+</div>
+
+    {% include 'footer.html' %}
+
+    <!-- scripts -->
+    <script src="//code.jquery.com/jquery-1.11.2.min.js" type="text/javascript"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="{{url_for('static', filename='main.js')}}" type="text/javascript"></script>
+    {% block js %}{% endblock %}
+	<!-- Mainly scripts -->
+	<script src="{{url_for('static', filename='js/jquery-3.1.1.min.js')}}"></script>
+	<script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
+	<script src="{{url_for('static', filename='js/plugins/metisMenu/jquery.metisMenu.js')}}"></script>
+	<script src="{{url_for('static', filename='js/plugins/slimscroll/jquery.slimscroll.min.js')}}"></script>
+
+	<!-- Custom and plugin javascript -->
+	<script src="{{url_for('static', filename='js/inspinia.js')}}"></script>
+	<script src="{{url_for('static', filename='js/plugins/pace/pace.min.js')}}"></script>
+
+  </body>
+</html>
