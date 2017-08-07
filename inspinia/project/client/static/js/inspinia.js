@@ -5,6 +5,7 @@
  *
  */
 
+
 $(document).ready(function () {
 
 
@@ -15,7 +16,7 @@ $(document).ready(function () {
         $('body').removeClass('body-small')
     }
 
-    // MetisMenu
+    // MetsiMenu
     $('#side-menu').metisMenu();
 
     // Collapse ibox function
@@ -95,12 +96,6 @@ $(document).ready(function () {
         return false;
     });
 
-    // Append config box / Only for demo purpose
-    // Uncomment on server mode to enable XHR calls
-    $.get("skin-config.html", function (data) {
-        if (!$('body').hasClass('no-skin-config'))
-            $('body').append(data);
-    });
 
     // Minimalize menu
     $('.navbar-minimalize').on('click', function () {
@@ -121,20 +116,20 @@ $(document).ready(function () {
         var heightWithoutNavbar = $("body > #wrapper").height() - 61;
         $(".sidebar-panel").css("min-height", heightWithoutNavbar + "px");
 
-        var navbarheight = $('nav.navbar-default').height();
-        var wrapperHeight = $('#page-wrapper').height();
+        var navbarHeigh = $('nav.navbar-default').height();
+        var wrapperHeigh = $('#page-wrapper').height();
 
-        if (navbarheight > wrapperHeight) {
-            $('#page-wrapper').css("min-height", navbarheight + "px");
+        if (navbarHeigh > wrapperHeigh) {
+            $('#page-wrapper').css("min-height", navbarHeigh + "px");
         }
 
-        if (navbarheight < wrapperHeight) {
+        if (navbarHeigh < wrapperHeigh) {
             $('#page-wrapper').css("min-height", $(window).height() + "px");
         }
 
         if ($('body').hasClass('fixed-nav')) {
-            if (navbarheight > wrapperHeight) {
-                $('#page-wrapper').css("min-height", navbarheight + "px");
+            if (navbarHeigh > wrapperHeigh) {
+                $('#page-wrapper').css("min-height", navbarHeigh - 60 + "px");
             } else {
                 $('#page-wrapper').css("min-height", $(window).height() - 60 + "px");
             }
