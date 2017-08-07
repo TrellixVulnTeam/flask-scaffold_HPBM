@@ -1,4 +1,6 @@
 {% extends "_base.html" %}
+{% set active_page = "members" %}
+
 {% block content %}
   <h1>Welcome, <em>{{ current_user.email }}</em>!</h1>
   <h3>This is the members-only page.</h3>

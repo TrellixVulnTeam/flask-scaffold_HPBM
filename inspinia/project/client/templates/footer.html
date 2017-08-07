@@ -1,7 +1,12 @@
 <footer>
-  <div class="container">
-    <small>
-      <span>© <a href="mailto:michael@realpython.com">Real Python</a></span>
-    </small>
-  </div>
+  {% if current_user.is_authenticated %}
+  <div class="footer">
+            <div class="pull-right">
+                <span><a href="mailto:viresh.dhawan@gmail.com">Viresh Dhawan</a></span>
+            </div>
+            <div>
+                <strong>Copyright</strong> Example Company &copy; 2014-2017
+            </div>
+        </div>
+		{% endif %}
 </footer>
